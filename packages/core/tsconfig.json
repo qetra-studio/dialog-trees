@@ -9,7 +9,12 @@
     "strict": true,
     "declaration": true,
     "declarationDir": "./dist/types",
-    "moduleResolution": "Node"
+    "moduleResolution": "Node",
+    "jsx": "react-jsx",
+    "paths": {
+      "@base/*": ["./src/base/*"],
+      "@contexts/*": ["./src/contexts/*"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

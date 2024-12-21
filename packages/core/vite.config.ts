@@ -9,17 +9,20 @@ export default defineConfig({
     build: {
         lib: {
             entry: 'src/index.ts',
-            name: 'QetraDreesCore',
-            fileName: (format) => `index.${format}.js`,
+            name: 'QetraDreesMui',
+            formats: ['es'],
         },
         rollupOptions: {
-            external: ['react', 'react-dom'],
+            external: ['react', 'react-dom', 'react/jsx-runtime'],
             output: {
-                globals: {
-                    react: 'React',
-                    'react-dom': 'ReactDOM',
-                },
+                preserveModules: true,
+                preserveModulesRoot: 'src', // Set the root for the output directory
+                dir: 'dist',
+                entryFileNames: '[name].js', // Entry file names
             },
-        }
+        },
+        target: 'modules',
+        emptyOutDir: true,
+        minify: false
     },
 });

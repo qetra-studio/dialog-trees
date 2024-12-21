@@ -1,9 +1,3 @@
-import { coreFunction } from "@qetra-drees/core";
-
-export const greet = (name: string): string => {
-    console.log(coreFunction())
-    return `Hello, ${name}!`;
-};
-
-
-greet("hello")
+export * from './base'
+export * from './contexts'
+export * from './dialog'

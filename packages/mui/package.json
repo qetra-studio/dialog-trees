@@ -1,8 +1,8 @@
 {
   "name": "@qetra-drees/mui",
   "version": "1.0.0",
-  "main": "dist/index.es.js",
-  "types": "dist/index.d.ts",
+  "main": "./index.js",
+  "types": "./index.d.ts",
   "type": "module",
   "license": "MIT",
   "scripts": {
@@ -10,18 +10,32 @@
     "dev": "vite build --watch"
   },
   "exports": {
-    ".": {
-      "import": "./dist/index.es.js",
-      "require": "./dist/index.umd.js"
-    }
+    "./*": "./dist/*.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "peerDependencies": {
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
+    "@mui/icons-material": "^5.0.0 || ^6.0.0",
+    "@mui/material": "^5.0.0 || ^6.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   },
   "devDependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^6.2.1",
+    "@mui/material": "^6.2.1",
+    "@types/react": "^19.0.2",
     "@vitejs/plugin-react": "^4.3.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "typescript": "^5.7.2",
     "vite": "^6.0.3",
-    "vite-plugin-dts": "^4.3.0"
+    "vite-plugin-dts": "^4.3.0",
+    "vite-tsconfig-paths": "^5.1.4"
   },
   "dependencies": {
     "@qetra-drees/core": "*"
