@@ -43,7 +43,7 @@ jobs:
       - name: Enable Corepack
         run: corepack enable
       - name: Yarn Berry
-        run: yarn set version berry
+        run: yarn set version 4.5.3
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
