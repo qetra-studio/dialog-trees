@@ -42,6 +42,8 @@ jobs:
           fi
       - name: Enable Corepack
         run: corepack enable
+      - name: Yarn Berry
+        run: yarn set version berry
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
