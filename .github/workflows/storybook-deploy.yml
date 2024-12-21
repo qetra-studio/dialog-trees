@@ -59,11 +59,11 @@ jobs:
       - name: Build Packages
         run:  ${{ steps.detect-package-manager.outputs.manager }} build
       - name: Build Storybook
-        run: ${{ steps.detect-package-manager.outputs.runner }} build-storybook
+        run: ${{ steps.detect-package-manager.outputs.runner }} build-storybook -- -o storybook-out
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out
+          path: ./storybook-out
 
   # Deployment job
   deploy:

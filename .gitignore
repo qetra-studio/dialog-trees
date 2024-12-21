@@ -131,3 +131,4 @@ dist
 .idea
 
 *storybook.log
+storybook-static
