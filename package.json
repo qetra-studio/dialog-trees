@@ -11,7 +11,7 @@
     "packages/core"
   ],
   "scripts": {
-    "build": "yarn workspaces foreach run build",
+    "build": "yarn workspaces foreach --exclude @qetra/dialog-trees -W run build",
     "dev": "yarn workspaces foreach --exclude @qetra/dialog-trees -p -i -W run dev",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
