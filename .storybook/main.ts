@@ -1,4 +1,5 @@
 import type {StorybookConfig} from "@storybook/react-vite";
+import * as path from "node:path";
 
 import {join, dirname} from "path";
 
@@ -27,6 +28,18 @@ const config: StorybookConfig = {
     },
     core: {
         builder: '@storybook/builder-vite'
+    },
+    viteFinal: (config) => {
+        if(!config.resolve) {
+            config.resolve = {};
+        }
+        config.resolve.alias = {
+            ...config.resolve.alias,
+            // Resolve monorepo package aliases
+            "@qetra-drees/core": path.resolve(__dirname, "../packages/core/dist"),
+            "@qetra-drees/mui": path.resolve(__dirname, "../packages/mui/dist"),
+        };
+        return config;
     }
 };
 export default config;
