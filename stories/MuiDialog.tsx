@@ -1,26 +1,20 @@
-import DreesMuiDialog from "@qetra-drees/mui/dialog/Dialog";
-import React, {useState} from 'react';
+import TailsMuiDialog from "@tree-tails/mui/dialog/Dialog";
+import React from 'react';
 
-import './button.css';
-import {Button} from "./Button";
-
-export interface ButtonProps {
-    hideFullScreenSwitch?: true
-    defaultFullScreen?: true;
+export interface MuiDialogProps {
+    hideFullScreenSwitch?: boolean;
+    defaultFullScreen?: boolean;
+    maxWidth: string;
+    open: boolean;
+    onClose:() => void;
 }
 
 /** Primary UI component for user interaction */
 export const MuiDialog = ({
                               ...props
-                          }: ButtonProps) => {
-    const [open, setOpen] = useState(false);
+                          }: MuiDialogProps) => {
     return (
-        <>
-            <Button label='Open dialog' onClick={() => setOpen(true)} primary size='large'/>
-            <DreesMuiDialog
-                maxWidth='md'
-                open={open}
-                onClose={() => setOpen(false)}
+            <TailsMuiDialog
                 defaultNode='default'
                 nodes={{
                     'default': {
@@ -35,6 +29,5 @@ export const MuiDialog = ({
                 }}
                 {...props}
             />
-        </>
     );
 };

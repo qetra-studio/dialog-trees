@@ -1,16 +1,16 @@
 import TreeDialogContextProvider, {TreeDialogContextMembers} from "@contexts/DialogTreeContext";
 import DialogNode from "@dialog/Node";
-import {DialogNodeBreadcrumb, DreesDialogNode, DreesTreeDialogProps, NodeKey} from "@dialog/types";
+import {DialogNodeBreadcrumb, DreesDialogNode, TailsDialogProps, NodeKey} from "@dialog/types";
 import {findNode} from "@dialog/utils";
 import { useEffect, useMemo, useState } from 'react';
 
 
-export default function DreesMuiDialog<T extends Record<string, DreesDialogNode>>({
+export default function TailsMuiDialog<T extends Record<string, DreesDialogNode>>({
                                                                                    nodes,
                                                                                    defaultNode,
                                                                                    open,
                                                                                    ...props
-                                                                               }: DreesTreeDialogProps<T>) {
+                                                                               }: TailsDialogProps<T>) {
     const { onClose } = props;
     const [history, setHistory] = useState([defaultNode]);
 
@@ -72,14 +72,14 @@ export default function DreesMuiDialog<T extends Record<string, DreesDialogNode>
 
     return (
         <TreeDialogContextProvider {...ctx}>
-            <DialogNode<T>
+            {open ? <DialogNode<T>
                 node={node}
                 nodeId={id}
                 open={open}
                 prevNodeLabel={prevNode?.label}
                 {...props}
                 breadcrumbs={breadcrumbs}
-            />
+            /> : null}
         </TreeDialogContextProvider>
     );
 }

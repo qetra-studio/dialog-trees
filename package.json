@@ -1,5 +1,5 @@
 {
-  "name": "@qetra/dialog-trees",
+  "name": "@qetra/tree-tails",
   "version": "1.0.0",
   "main": "index.js",
   "private": true,
@@ -11,9 +11,9 @@
     "packages/core"
   ],
   "scripts": {
-    "build": "yarn workspaces foreach --exclude @qetra/dialog-trees -W run build",
+    "build": "yarn workspaces foreach --exclude @qetra/tree-tails -W run build",
     "dev": "yarn workspaces foreach --exclude @qetra/dialog-trees -p -i -W run dev",
-    "storybook": "storybook dev -p 6006",
+    "storybook": "storybook dev -p 6006 --no-open",
     "build-storybook": "storybook build"
   },
   "peerDependencies": {

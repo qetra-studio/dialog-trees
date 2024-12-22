@@ -1685,49 +1685,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@qetra-drees/core@npm:*, @qetra-drees/core@workspace:packages/core":
+"@qetra/tree-tails@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@qetra-drees/core@workspace:packages/core"
-  dependencies:
-    "@vitejs/plugin-react": "npm:^4.3.4"
-    react: "npm:^19.0.0"
-    react-dom: "npm:^19.0.0"
-    typescript: "npm:^5.7.2"
-    vite: "npm:^6.0.3"
-    vite-plugin-dts: "npm:^4.3.0"
-  languageName: unknown
-  linkType: soft
-
-"@qetra-drees/mui@workspace:packages/mui":
-  version: 0.0.0-use.local
-  resolution: "@qetra-drees/mui@workspace:packages/mui"
-  dependencies:
-    "@emotion/react": "npm:^11.14.0"
-    "@emotion/styled": "npm:^11.14.0"
-    "@mui/icons-material": "npm:^6.2.1"
-    "@mui/material": "npm:^6.2.1"
-    "@qetra-drees/core": "npm:*"
-    "@types/react": "npm:^19.0.2"
-    "@vitejs/plugin-react": "npm:^4.3.4"
-    react: "npm:^19.0.0"
-    react-dom: "npm:^19.0.0"
-    typescript: "npm:^5.7.2"
-    vite: "npm:^6.0.3"
-    vite-plugin-dts: "npm:^4.3.0"
-    vite-tsconfig-paths: "npm:^5.1.4"
-  peerDependencies:
-    "@emotion/react": ^11.0.0
-    "@emotion/styled": ^11.0.0
-    "@mui/icons-material": ^5.0.0 || ^6.0.0
-    "@mui/material": ^5.0.0 || ^6.0.0
-    react: ^18.0.0
-    react-dom: ^18.0.0
-  languageName: unknown
-  linkType: soft
-
-"@qetra/dialog-trees@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "@qetra/dialog-trees@workspace:."
+  resolution: "@qetra/tree-tails@workspace:."
   dependencies:
     "@chromatic-com/storybook": "npm:3.2.3"
     "@storybook/addon-essentials": "npm:8.4.7"
@@ -2443,6 +2403,46 @@ __metadata:
   checksum: 10c0/68a0c2aa28a3c8e6eb05cafee29705438d7d8a9427423ce5064d44f19c29e89b5636de46dd2f28620fb10abba75c67130185bbc3aa23ac1163a227a5f36641e1
   languageName: node
   linkType: hard
+
+"@tree-tails/core@npm:*, @tree-tails/core@workspace:packages/core":
+  version: 0.0.0-use.local
+  resolution: "@tree-tails/core@workspace:packages/core"
+  dependencies:
+    "@vitejs/plugin-react": "npm:^4.3.4"
+    react: "npm:^19.0.0"
+    react-dom: "npm:^19.0.0"
+    typescript: "npm:^5.7.2"
+    vite: "npm:^6.0.3"
+    vite-plugin-dts: "npm:^4.3.0"
+  languageName: unknown
+  linkType: soft
+
+"@tree-tails/mui@workspace:packages/mui":
+  version: 0.0.0-use.local
+  resolution: "@tree-tails/mui@workspace:packages/mui"
+  dependencies:
+    "@emotion/react": "npm:^11.14.0"
+    "@emotion/styled": "npm:^11.14.0"
+    "@mui/icons-material": "npm:^6.2.1"
+    "@mui/material": "npm:^6.2.1"
+    "@tree-tails/core": "npm:*"
+    "@types/react": "npm:^19.0.2"
+    "@vitejs/plugin-react": "npm:^4.3.4"
+    react: "npm:^19.0.0"
+    react-dom: "npm:^19.0.0"
+    typescript: "npm:^5.7.2"
+    vite: "npm:^6.0.3"
+    vite-plugin-dts: "npm:^4.3.0"
+    vite-tsconfig-paths: "npm:^5.1.4"
+  peerDependencies:
+    "@emotion/react": ^11.0.0
+    "@emotion/styled": ^11.0.0
+    "@mui/icons-material": ^5.0.0 || ^6.0.0
+    "@mui/material": ^5.0.0 || ^6.0.0
+    react: ^18.0.0
+    react-dom: ^18.0.0
+  languageName: unknown
+  linkType: soft
 
 "@tufjs/canonical-json@npm:2.0.0":
   version: 2.0.0

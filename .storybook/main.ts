@@ -36,10 +36,10 @@ const config: StorybookConfig = {
         config.resolve.alias = {
             ...config.resolve.alias,
             // Resolve monorepo package aliases
-            "@qetra-drees/core": path.resolve(__dirname, "../packages/core/dist"),
-            "@qetra-drees/mui": path.resolve(__dirname, "../packages/mui/dist"),
+            "@tree-tails/core": path.resolve(__dirname, "../packages/core/dist"),
+            "@tree-tails/mui": path.resolve(__dirname, "../packages/mui/dist"),
         };
         return config;
-    }
+    },
 };
 export default config;

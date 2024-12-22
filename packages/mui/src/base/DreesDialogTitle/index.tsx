@@ -29,6 +29,11 @@ export default function DreesDialogTitle({
                                              sx,
                                          }: DreesDialogTitleProps) {
     const onFullScreenIconClick = () => onFullScreenSwitch(!fullScreen);
+    const fullScreenSwitch = <IconButton onClick={onFullScreenIconClick}>{fullScreen ? <UnfoldLessIcon sx={{
+        rotate: '45deg'
+    }}/> : <UnfoldMoreIcon sx={{
+        rotate: '45deg'
+    }}/>}</IconButton>;
     return (
         <DialogTitle
             sx={{
@@ -45,23 +50,10 @@ export default function DreesDialogTitle({
                     {title}
                 </Typography>
                 {childLeft}
-                {childRight || !hideFullScreenSwitch ? (
-                    <Stack flexGrow={1} direction="row-reverse" spacing={1}>
-                        <IconButton onClick={onFullScreenIconClick}>{fullScreen ? <UnfoldLessIcon sx={{
-                            rotate: '45deg'
-                        }}/> : <UnfoldMoreIcon sx={{
-                            rotate: '45deg'
-                        }}/>}</IconButton>
-                        {childRight}
-                    </Stack>
-                ) : (
-                    <Stack flexGrow={1} direction="row-reverse" spacing={1}>
-                        <IconButton onClick={onClose}><UnfoldLessIcon sx={{
-                            rotate: '45deg'
-                        }}/></IconButton>
-                        {childRight}
-                    </Stack>
-                )}
+                <Stack flexGrow={1} direction="row-reverse" spacing={1}>
+                    {!hideFullScreenSwitch ? fullScreenSwitch : null}
+                    {childRight}
+                </Stack>
             </Stack>
         </DialogTitle>
     );

@@ -7,7 +7,7 @@ import type { DreesDialogTitleProps } from '@base/DreesDialogTitle';
 
 type DreesDialogNodesMap = Record<string, DreesDialogNode>;
 
-export interface DreesTreeDialogProps<T extends DreesDialogNodesMap> {
+export interface TailsDialogProps<T extends DreesDialogNodesMap> {
 	open: boolean;
 	onClose: () => void;
 	defaultFullScreen?: true;

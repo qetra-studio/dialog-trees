@@ -1,7 +1,7 @@
 import DreesDialog from '@base/DreesDialog';
 import {useTreeDialogContext} from '@contexts/index';
 import Breadcrumb from "@dialog/Breadcrumb";
-import {DialogNodeBreadcrumb, DreesDialogNode, DreesTreeDialogProps, NodeKey} from "@dialog/types";
+import {DialogNodeBreadcrumb, DreesDialogNode, TailsDialogProps, NodeKey} from "@dialog/types";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Button from '@mui/material/Button';
@@ -22,7 +22,7 @@ export default function DialogNode<T extends Record<string, DreesDialogNode>>({
     prevNodeLabel?: string;
     nodeId: NodeKey<T>;
     breadcrumbs: DialogNodeBreadcrumb<T>[];
-} & Omit<DreesTreeDialogProps<T>, 'nodes' | 'defaultNode'>) {
+} & Omit<TailsDialogProps<T>, 'nodes' | 'defaultNode'>) {
     const {goBack, navigate} = useTreeDialogContext<T, NodeKey<T>>();
     const {title, content, actions} = node.dialog;
 
