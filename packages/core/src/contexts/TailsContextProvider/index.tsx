@@ -1,22 +1,21 @@
-import {DialogActionsProps} from "@dialog/Actions";
-import {DialogContentProps} from "@dialog/Content";
-import {DialogProps} from "@dialog/Dialog";
-import {DialogTitleSlotProps} from "@dialog/Title/Slot";
-import {MouseEvent, createContext, FC, PropsWithChildren, useContext} from "react";
-import {BreadcrumbProps} from "../Breadcrumb";
+
+import {TailsDialogProps} from "@dialog/Tails";
+import {DialogTitleProps} from "@dialog/Title";
+import {MouseEvent, createContext, FC, PropsWithChildren, useContext, useMemo} from "react";
+import {BreadcrumbProps} from "../../Breadcrumb";
 
 export interface TailsContext {
     slots: {
         dialog: {
-            Component: FC<PropsWithChildren<DialogProps>>,
+            Component: FC<PropsWithChildren<TailsDialogProps>>,
             title: {
-                Component: FC<PropsWithChildren<DialogTitleSlotProps>>
+                Component: FC<PropsWithChildren<DialogTitleProps>>
             },
             content: {
-                Component: FC<PropsWithChildren<DialogContentProps>>
+                Component: FC<PropsWithChildren>
             },
             actions: {
-                Component: FC<PropsWithChildren<DialogActionsProps>>
+                Component: FC<PropsWithChildren>
             }
             closeButton: {
                 Component: FC<{onClick: (event: MouseEvent<HTMLElement>) => void}>
@@ -39,5 +38,6 @@ const Context = createContext<TailsContext>({} as TailsContext);
 export const useTailsContext = () => useContext(Context);
 
 export default function TailsContextProvider({ children, ...ctx }: PropsWithChildren<TailsContext>) {
-    return <Context.Provider value={ctx}>{children}</Context.Provider>
+    const value = useMemo(() => ({...ctx}), [ctx])
+    return <Context.Provider value={value}>{children}</Context.Provider>
 }

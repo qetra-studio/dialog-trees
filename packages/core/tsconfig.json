@@ -14,7 +14,9 @@
     "paths": {
       "@base/*": ["./src/base/*"],
       "@contexts/*": ["./src/contexts/*"],
-      "@dialog/*": ["./src/dialog/*"]
+      "@dialog/*": ["./src/dialog/*"],
+      "@types": ["./src/types"],
+      "@tails/*": ["./src/tails/*"]
     }
   },
   "include": ["src/**/*"],

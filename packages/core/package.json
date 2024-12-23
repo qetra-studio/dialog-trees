@@ -6,8 +6,8 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "build": "vite build",
-    "dev": "vite build --watch"
+    "build": "vite build -d",
+    "dev": "vite build --watch -d"
   },
   "exports": {
     "./*": "./dist/*.js"
@@ -21,6 +21,7 @@
     "react-dom": "^19.0.0",
     "typescript": "^5.7.2",
     "vite": "^6.0.3",
-    "vite-plugin-dts": "^4.3.0"
+    "vite-plugin-dts": "^4.3.0",
+    "vite-tsconfig-paths": "^5.1.4"
   }
 }

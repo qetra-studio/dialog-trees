@@ -15,12 +15,12 @@ interface DialogContextProviderProps {
     close: () => void;
 }
 
-export default function DialogContextProvider({ children, defaultFullScreen, close }: PropsWithChildren<DialogContextProviderProps>) {
+export default function TailsDialogContextProvider({ children, defaultFullScreen, close }: PropsWithChildren<DialogContextProviderProps>) {
     const [fullScreen, setFullscreen] = useState(() => defaultFullScreen ?? false);
     const value = useMemo(() => ({
         setFullscreen,
         fullScreen,
         close
-    }) satisfies DialogContext, [fullScreen])
+    }) satisfies DialogContext, [fullScreen, close])
     return <Context.Provider value={value}>{children}</Context.Provider>
 }

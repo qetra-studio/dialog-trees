@@ -1,3 +1,6 @@
-import {useTailsContext} from "@contexts/TailsContextProvider";
-import {PropsWithChildren} from "react";
-
+export * from '@dialog/Dialog'
+export {default as Dialog} from '@dialog/Dialog'
+export * from '@dialog/Content'
+export {default as DialogContent} from '@dialog/Content'
+export * from '@dialog/Title'
+export {default as DialogTitle} from '@dialog/Title'

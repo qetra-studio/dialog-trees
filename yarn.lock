@@ -2414,6 +2414,7 @@ __metadata:
     typescript: "npm:^5.7.2"
     vite: "npm:^6.0.3"
     vite-plugin-dts: "npm:^4.3.0"
+    vite-tsconfig-paths: "npm:^5.1.4"
   languageName: unknown
   linkType: soft
 

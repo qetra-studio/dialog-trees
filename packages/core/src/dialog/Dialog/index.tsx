@@ -1,20 +1,21 @@
-import {useTailsContext} from "@contexts/TailsContextProvider";
-import {PropsWithChildren} from "react";
+import TailsDialogNodeContextProvider from "@contexts/TailsDialogNodeProvider";
+import TailsDialog, {TailsDialogProps} from "@dialog/Tails";
+import {DialogSlots} from "@types";
+import {PropsWithChildren, useMemo} from "react";
 
-export interface DialogProps {
-    open: boolean;
-    onClose: () => void;
-    defaultFullScreen?: boolean;
-    hideFullScreenSwitch?: boolean;
-    maxWidth?: string;
-    slotProps?: Partial<{
-        dialog: Record<string, any>;
-        title: Record<string, any>;
-        content: Record<string, any>;
-    }>;
-}
+export type DialogProps = TailsDialogProps & DialogSlots
 
-export default function Dialog({children}: PropsWithChildren<DialogProps>) {
-    const {slots: {dialog: {Component}}} = useTailsContext()
-
+export default function Dialog({title, actions, content, ...props}: DialogProps) {
+    const tails = useMemo(() => ({
+        config: {
+            Component: ({children}: PropsWithChildren) => <TailsDialogNodeContextProvider
+                key='single-node'
+                title={title}
+                content={content}
+                actions={actions}>
+                {children}
+            </TailsDialogNodeContextProvider>
+        }
+    }), [title, actions, content])
+    return <TailsDialog tails={tails} {...props}/>
 }
