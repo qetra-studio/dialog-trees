@@ -1,9 +1,9 @@
-export * from '@base/DreesDialog'
+export * from './TailsDialog'
 export {
-    default as DreesDialog
-} from '@base/DreesDialog'
-export * from '@base/DreesDialogTitle'
+    default as TailsDialog
+} from './TailsDialog'
+export * from './TailsDialogTitle'
 export {
-    default as DreesDialogTitle
-} from '@base/DreesDialogTitle'
+    default as TailsDialogTitle
+} from './TailsDialogTitle'
 

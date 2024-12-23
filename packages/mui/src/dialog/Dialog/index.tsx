@@ -1,11 +1,11 @@
 import TreeDialogContextProvider, {TreeDialogContextMembers} from "@contexts/DialogTreeContext";
 import DialogNode from "@dialog/Node";
-import {DialogNodeBreadcrumb, DreesDialogNode, TailsDialogProps, NodeKey} from "@dialog/types";
+import {DialogNodeBreadcrumb, TailsDialogNode, TailsDialogProps, NodeKey} from "@dialog/types";
 import {findNode} from "@dialog/utils";
 import { useEffect, useMemo, useState } from 'react';
 
 
-export default function TailsMuiDialog<T extends Record<string, DreesDialogNode>>({
+export default function TailsMuiDialog<T extends Record<string, TailsDialogNode>>({
                                                                                    nodes,
                                                                                    defaultNode,
                                                                                    open,

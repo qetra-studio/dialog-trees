@@ -1,9 +1,9 @@
-import type { DreesDialogNode, NodeKey } from './types';
+import type { TailsDialogNode, NodeKey } from './types';
 
-export function findNode<T extends Record<string, DreesDialogNode>>(
+export function findNode<T extends Record<string, TailsDialogNode>>(
 	nodes: T,
 	key?: NodeKey<T>
-): DreesDialogNode | undefined {
+): TailsDialogNode | undefined {
 	if (!key) {
 		return;
 	}

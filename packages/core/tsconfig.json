@@ -13,7 +13,8 @@
     "jsx": "react-jsx",
     "paths": {
       "@base/*": ["./src/base/*"],
-      "@contexts/*": ["./src/contexts/*"]
+      "@contexts/*": ["./src/contexts/*"],
+      "@dialog/*": ["./src/dialog/*"]
     }
   },
   "include": ["src/**/*"],
