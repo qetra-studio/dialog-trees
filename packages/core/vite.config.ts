@@ -11,8 +11,8 @@ export default defineConfig({
         lib: {
             entry: {
                 index: "src/index.ts",
-                "contexts/index": "src/contexts/index.ts",
-                "dialog/index": "src/dialog/index.ts"
+                "config/index": "src/config/index.tsx",
+                "Dialog/index": "src/Dialog/index.tsx",
             },
             name: 'QetraDreesMui',
             formats: ['es', 'cjs'],

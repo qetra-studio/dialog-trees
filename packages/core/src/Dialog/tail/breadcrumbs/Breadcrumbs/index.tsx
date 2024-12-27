@@ -1,7 +1,6 @@
-import Breadcrumb from "@breadcrumbs/Breadcrumb";
-import {useTailsContext, useTailsDialogNodeContext} from "@contexts";
-import {TailKey, useDialogContext} from "@dialog";
-import {TailHistoryItem} from "@dialog/Dialog/types";
+import {useTailsConfigContext} from "@config";
+import {useDialogContext} from "@Dialog/tail/Dialog";
+
 
 export interface BreadcrumbsProps {
 }
@@ -14,7 +13,7 @@ export default function Breadcrumbs<T>() {
                 Component: Breadcrumbs
             }
         }
-    } = useTailsContext()
+    } = useTailsConfigContext()
 
     const {history, navigate} = useDialogContext<T>()
 

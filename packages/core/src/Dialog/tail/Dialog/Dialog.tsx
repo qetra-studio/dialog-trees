@@ -1,14 +1,15 @@
-import {useTailsContext} from "@contexts/TailsContextProvider";
-import {DialogContextProvider} from "@dialog";
-import {DialogContext} from "@dialog/Dialog/Context";
-import {History} from "@dialog/Dialog/types";
+
+import {useTailsConfigContext} from "@config";
+import {DialogContext, DialogContextProvider} from "@Dialog/tail/Dialog/Context";
+import {NavigationFn, TailNavigationHistory} from "@Dialog/types";
 import React, {PropsWithChildren, useMemo, useState} from "react";
 
 export interface DialogProps<T> {
     onClose: () => void;
     defaultFullScreen?: boolean;
     open: boolean;
-    history: History<T>
+    history: TailNavigationHistory<T>
+    navigate: NavigationFn<T>
 }
 
 export default function Dialog<T>({
@@ -16,16 +17,18 @@ export default function Dialog<T>({
                                       defaultFullScreen,
                                       onClose,
                                       open,
-                                      history
+                                      history,
+                                      navigate
                                   }: PropsWithChildren<DialogProps<T>>) {
-    const {slots: {dialog: {Component: DialogComponent}}} = useTailsContext()
+    const {slots: {dialog: {Component: DialogComponent}}} = useTailsConfigContext()
     const [fullScreen, setFullscreen] = useState(() => defaultFullScreen ?? false);
     const ctx = useMemo(() => ({
         close: onClose,
         fullScreen,
         setFullscreen,
-        history
-    }) satisfies DialogContext<T>, [onClose, fullScreen, history])
+        history,
+        navigate
+    }) satisfies DialogContext<T>, [onClose, fullScreen, history, navigate])
     return <DialogContextProvider {...ctx}>
         <DialogComponent open={open} onClose={onClose} fullScreen={fullScreen}>
             {children}

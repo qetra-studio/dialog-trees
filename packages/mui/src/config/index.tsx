@@ -10,14 +10,13 @@ import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import {DialogTitleProps, useDialogContext} from "@tree-tails/core/dialog";
-import {TailsContext} from "@tree-tails/core/contexts";
+import {TailsConfig} from "@tree-tails/core";
 import React, {PropsWithChildren} from "react";
 
 
 const backIcon = <ArrowBackIosNewIcon/>;
 
-export default function createTailsMuiConfig(): TailsContext {
+export default function createTailsMuiConfig(): TailsConfig {
     return {
         slots: {
             dialog: {
@@ -59,7 +58,7 @@ export default function createTailsMuiConfig(): TailsContext {
                                     closeButton,
                                     fullScreenSwitch,
                                     goBackButton
-                                }: PropsWithChildren<DialogTitleProps>) => {
+                                }) => {
                         return <DialogTitle sx={{
                             borderBottom: 1,
                             borderColor: 'divider',
@@ -105,8 +104,11 @@ export default function createTailsMuiConfig(): TailsContext {
                         </Button>
                 }
             },
-            breadcrumb: {
-                Component: () => <></>
+            breadcrumbs: {
+                Component: () => <></>,
+                breadcrumb: {
+                    Component: () => <></>
+                }
             }
         }
     }

@@ -1,9 +1,20 @@
-import TailsDialogNodeContextProvider from "@contexts/TailsDialogNodeProvider";
-import {Dialog, GoBackFn, TailKey, TailOptions, TailsTree, TailType, TailValue} from "@dialog";
-import DialogActions from "@dialog/Actions";
-import DialogContent from "@dialog/Content";
-import {History, TailHistoryItem} from "@dialog/Dialog/types";
-import DialogTitle from "@dialog/Title";
+
+import Dialog from "@Dialog/tail/Dialog";
+import DialogActions from "@Dialog/tail/Actions";
+import DialogContent from "@Dialog/tail/Content";
+import TailContextProvider from "@Dialog/tail/Context";
+import DialogTitle from "@Dialog/tail/Title";
+import {
+    NavigationFn,
+    NavigationOptions, TailHistoryItem,
+    TailKey,
+    TailNavigationHistory,
+    TailOptions,
+    TailsTree,
+    TailType,
+    TailValue
+} from "@Dialog/types";
+import {lastIndexBy} from "@Dialog/utils";
 import {Fragment, ReactNode, useCallback, useMemo, useState} from "react";
 
 interface Props {
@@ -42,14 +53,14 @@ export default function TailsDialog<T>({
                                            defaultFullScreen,
                                            rootTailProps,
                                            hideFullScreenSwitch,
-    resetOnClose,
-    rootGoBackLabel,
-    rootBreadcrumbLabel,
-    rootLabel,
+                                           resetOnClose,
+                                           rootGoBackLabel,
+                                           rootBreadcrumbLabel,
+                                           rootLabel,
                                            ...props
                                        }: Readonly<TailsDialogProps<T>>) {
 
-    const [history, setHistory] = useState<History<T>>(() => [{
+    const [history, setHistory] = useState<TailNavigationHistory<T>>(() => [{
         key: '',
         props: rootTailProps,
         label: rootLabel,
@@ -86,7 +97,7 @@ export default function TailsDialog<T>({
     }, [history, tail, rootTailProps])
 
     const onClose = () => {
-        if(resetOnClose) {
+        if (resetOnClose) {
             setHistory(() => [{
                 key: '',
                 props: rootTailProps,
@@ -98,36 +109,50 @@ export default function TailsDialog<T>({
         return props.onClose()
     }
 
-    const navigate = useCallback(<K extends TailKey<T>,>(item: TailHistoryItem<T, K>) => {
-        setHistory(history => [...history, {...item}])
-    }, [])
+    const navigate: NavigationFn<T> = useCallback(<K extends TailKey<T>>(key: K, options: NavigationOptions<T, K>) => {
+        const strategy = options.strategy
+        switch (strategy) {
+            case "return":
+                setHistory(history => {
+                    const index = lastIndexBy(history, x => x.key === key);
+                    if (index === -1) {
+                        throw new Error(`Last index of ${key} has not been found in history`);
+                    }
+                    const copy = history.slice(0, index);
+                    const item = copy[index];
+                    if (options.props) {
+                        item.props = {
+                            ...(item.props ?? {}),
+                            ...options.props
+                        } // makes it possible to pass new props back
+                    }
+                    return copy
+                })
+                break;
+            case "follow":
+            case undefined:
+            case null:
+                setHistory(history => [...history, {...options, key}])
+                break;
+            default:
+                throw new Error(`Unknown navigation strategy '${strategy}'`)
 
-    const goBack  = useCallback(((args) => {
-        setHistory(history => {
-            const copy =  history.slice(0, -1)
-            if(args?.props) {
-                const lastItem = copy[copy.length - 1];
-                lastItem.props = {
-                    ...(lastItem.props ?? {}),
-                    ...args.props
-                } // makes it possible to pass new props back
-            }
-            return copy;
-        })
-    }) as GoBackFn, [])
+        }
+    }, [])
 
     const isMounted = props.open || unmountable
     return isMounted ? <Dialog
         open={props.open}
         onClose={onClose}
         history={history}
+        navigate={navigate}
         defaultFullScreen={defaultFullScreen}>
-        <Fragment  key={currentTail.tailKey}>
-        <TailsDialogNodeContextProvider key={currentTail.tailKey} {...currentTail} navigate={navigate} goBack={goBack}>
-            <DialogTitle goBack={goBack} {...slotProps?.title} hideFullScreenSwitch={hideFullScreenSwitch}/>
-            <DialogContent {...slotProps?.content}/>
-            <DialogActions {...slotProps?.actions}/>
-        </TailsDialogNodeContextProvider>
+        <Fragment key={currentTail.tailKey}>
+            <TailContextProvider key={currentTail.tailKey} {...currentTail}>
+                <DialogTitle navigate={navigate} {...slotProps?.title} hideFullScreenSwitch={hideFullScreenSwitch}/>
+                <DialogContent {...slotProps?.content}/>
+                <DialogActions {...slotProps?.actions}/>
+            </TailContextProvider>
         </Fragment>
     </Dialog> : null
 }

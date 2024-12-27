@@ -1,6 +1,6 @@
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import {Tail} from "@tree-tails/core";
+import {Tail} from "@tree-tails/core/Dialog/types";
 import React, {useEffect, useState} from "react";
 
 interface Options {

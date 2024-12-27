@@ -10,15 +10,10 @@
     "declaration": true,
     "composite": true,
     "paths": {
-      "@base/*": ["./src/base/*"],
-      "@contexts": ["./src/contexts"],
-      "@contexts/*": ["./src/contexts/*"],
-      "@breadcrumbs": ["./src/breadcrumbs"],
-      "@breadcrumbs/*": ["./src/breadcrumbs/*"],
-      "@dialog": ["src/dialog"],
-      "@dialog/*": ["src/dialog/*"],
-      "@types": ["./src/types"],
-      "@tails/*": ["./src/tails/*"]
+      "@config": ["./src/config"],
+      "@config/*": ["./src/config/*"],
+      "@Dialog": ["src/Dialog"],
+      "@Dialog/*": ["src/Dialog/*"]
     }
   },
   "include": ["src/**/*"],
