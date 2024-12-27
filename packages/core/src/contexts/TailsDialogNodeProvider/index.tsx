@@ -1,4 +1,4 @@
-import {TailKey, TailOptions, TailType} from "@dialog";
+import {GoBackFn, TailKey, TailOptions, TailType} from "@dialog";
 import {TailHistoryItem} from "@dialog/Dialog/types";
 import {DialogSlots} from "@types";
 import {createContext, PropsWithChildren, useCallback, useContext} from "react";
@@ -14,7 +14,7 @@ type WithTail<T> = {
     props: TailOptions<T, ''>['props']
     tailKey: TailKey<T>
     navigate: <K extends TailKey<T>, >(item: TailHistoryItem<T, K>) => void;
-    goBack: () => void
+    goBack: GoBackFn
 }
 
 // Custom hook to encapsulate projector logic

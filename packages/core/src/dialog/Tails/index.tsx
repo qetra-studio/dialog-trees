@@ -1,5 +1,5 @@
 import TailsDialogNodeContextProvider from "@contexts/TailsDialogNodeProvider";
-import {Dialog, TailKey, TailOptions, TailsTree, TailType, TailValue} from "@dialog";
+import {Dialog, GoBackFn, TailKey, TailOptions, TailsTree, TailType, TailValue} from "@dialog";
 import DialogActions from "@dialog/Actions";
 import DialogContent from "@dialog/Content";
 import {History, TailHistoryItem} from "@dialog/Dialog/types";
@@ -102,11 +102,19 @@ export default function TailsDialog<T>({
         setHistory(history => [...history, {...item}])
     }, [])
 
-    const goBack = useCallback(() => {
+    const goBack  = useCallback(((args) => {
         setHistory(history => {
-            return history.slice(0, -1)
+            const copy =  history.slice(0, -1)
+            if(args?.props) {
+                const lastItem = copy[copy.length - 1];
+                lastItem.props = {
+                    ...(lastItem.props ?? {}),
+                    ...args.props
+                } // makes it possible to pass new props back
+            }
+            return copy;
         })
-    }, [])
+    }) as GoBackFn, [])
 
     const isMounted = props.open || unmountable
     return isMounted ? <Dialog

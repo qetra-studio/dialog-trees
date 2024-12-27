@@ -13,6 +13,8 @@
       "@base/*": ["./src/base/*"],
       "@contexts": ["./src/contexts"],
       "@contexts/*": ["./src/contexts/*"],
+      "@breadcrumbs": ["./src/breadcrumbs"],
+      "@breadcrumbs/*": ["./src/breadcrumbs/*"],
       "@dialog": ["src/dialog"],
       "@dialog/*": ["src/dialog/*"],
       "@types": ["./src/types"],

@@ -1,6 +1,7 @@
 import {useTailsContext} from "@contexts/TailsContextProvider";
 import {useTailsDialogNodeContext} from "@contexts/TailsDialogNodeProvider";
 import {useDialogContext} from "@dialog/Dialog";
+import {GoBackFn} from "@dialog/Tails/types";
 import {ReactNode} from "react";
 
 export interface DialogTitleProps {
@@ -11,7 +12,7 @@ export interface DialogTitleProps {
 
 export default function DialogTitle({hideFullScreenSwitch, goBack}: {
     hideFullScreenSwitch?: boolean
-    goBack: () => void
+    goBack: GoBackFn
 }) {
     const {
         slots:
@@ -35,7 +36,7 @@ export default function DialogTitle({hideFullScreenSwitch, goBack}: {
     const closeButton = <CloseButton onClick={close}/>
     const {title} = useTailsDialogNodeContext()
     const lastHistoryItem = history.length > 1 ? history[history.length - 2] : null;
-    const goBackButton = lastHistoryItem? <GoBackButton onClick={goBack} label={lastHistoryItem.goBackLabel ?? lastHistoryItem.label}/> : null
+    const goBackButton = lastHistoryItem? <GoBackButton onClick={() => goBack()} label={lastHistoryItem.goBackLabel ?? lastHistoryItem.label}/> : null
     return <Title closeButton={closeButton}
                   fullScreenSwitch={hideFullScreenSwitch ? null : fullScreenSwitch}
                   goBackButton={goBackButton}>

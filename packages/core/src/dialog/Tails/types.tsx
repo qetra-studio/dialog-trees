@@ -1,9 +1,13 @@
 import {TailHistoryItem} from "@dialog/Dialog/types";
 import {DialogSlots} from "@types";
 
+export type GoBackFn = (args?: {
+    props: Record<string, unknown>,
+}) => void // todo: make props strict
+
 export interface TailScopeContext<Tail> {
-    navigate: <K extends TailKey<Tail>, >(key: K, item: Omit<TailHistoryItem<Tail, K>, 'key'>) => void;
-    goBack: () => void
+    navigate: <K extends TailKey<Tail>, >(key: K, item: Omit<TailHistoryItem<Tail, K>, 'key'>) => void
+    goBack: GoBackFn
 }
 
 interface ProjectorArgs<Props, Tails> {

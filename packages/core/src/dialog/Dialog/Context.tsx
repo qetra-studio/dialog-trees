@@ -1,4 +1,5 @@
-import {History} from "@dialog/Dialog/types";
+import {TailKey} from "@dialog";
+import {History, TailHistoryItem} from "@dialog/Dialog/types";
 import {createContext, PropsWithChildren, useContext} from "react";
 
 export interface DialogContext<T> {
@@ -6,6 +7,7 @@ export interface DialogContext<T> {
     setFullscreen: (fullscreen: boolean) => void;
     close: () => void;
     history: History<T>
+    navigate: <K extends TailKey<T>, >(item: TailHistoryItem<T, K>) => void;
 }
 
 const Context = createContext<DialogContext<any>>({} as DialogContext<any>);

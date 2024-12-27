@@ -26,10 +26,10 @@
       "import": "./dist/dialog/index.js",
       "require": "./dist/dialog/index.cjs"
     },
-    "./create-tail": {
-      "types": "./dist/create-tail.d.ts",
-      "import": "./dist/create-tail.js",
-      "require": "./dist/create-tail.cjs"
+    "./breadcrumbs": {
+      "types": "./dist/breadcrumbs/index.d.ts",
+      "import": "./dist/breadcrumbs/index.js",
+      "require": "./dist/breadcrumbs/index.cjs"
     }
   },
   "files": [
