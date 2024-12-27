@@ -1701,8 +1701,8 @@ __metadata:
     "@types/node": "npm:^22.10.2"
     "@types/react": "npm:^19.0.2"
     lerna: "npm:^8.1.9"
-    react: "npm:^19.0.0"
-    react-dom: "npm:^19.0.0"
+    react: "npm:^18.0.0"
+    react-dom: "npm:^18.0.0"
     storybook: "npm:8.4.7"
     typescript: "npm:^5.7.2"
     vite: "npm:^6.0.3"
@@ -2404,20 +2404,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tree-tails/core@npm:*, @tree-tails/core@workspace:packages/core":
+"@tree-tails/core@workspace:*, @tree-tails/core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@tree-tails/core@workspace:packages/core"
   dependencies:
     "@vitejs/plugin-react": "npm:^4.3.4"
-    react: "npm:^19.0.0"
-    react-dom: "npm:^19.0.0"
     typescript: "npm:^5.7.2"
     vite: "npm:^6.0.3"
     vite-plugin-dts: "npm:^4.3.0"
+    vite-tsconfig-paths: "npm:^5.1.4"
+  peerDependencies:
+    react: ^17.0.0 || ^18.0.0 || ^19.0.0
+    react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
   languageName: unknown
   linkType: soft
 
-"@tree-tails/mui@workspace:packages/mui":
+"@tree-tails/mui@workspace:*, @tree-tails/mui@workspace:packages/mui":
   version: 0.0.0-use.local
   resolution: "@tree-tails/mui@workspace:packages/mui"
   dependencies:
@@ -2425,11 +2427,10 @@ __metadata:
     "@emotion/styled": "npm:^11.14.0"
     "@mui/icons-material": "npm:^6.2.1"
     "@mui/material": "npm:^6.2.1"
-    "@tree-tails/core": "npm:*"
     "@types/react": "npm:^19.0.2"
     "@vitejs/plugin-react": "npm:^4.3.4"
-    react: "npm:^19.0.0"
-    react-dom: "npm:^19.0.0"
+    react: "npm:18.0.0"
+    react-dom: "npm:18.0.0"
     typescript: "npm:^5.7.2"
     vite: "npm:^6.0.3"
     vite-plugin-dts: "npm:^4.3.0"
@@ -2439,8 +2440,33 @@ __metadata:
     "@emotion/styled": ^11.0.0
     "@mui/icons-material": ^5.0.0 || ^6.0.0
     "@mui/material": ^5.0.0 || ^6.0.0
-    react: ^18.0.0
-    react-dom: ^18.0.0
+    "@tree-tails/core": "workspace:*"
+    react: ^17.0.0 || ^18.0.0 || ^19.0.0
+    react-dom: ^17.0.0 || ^18.0.0 || ^19.0.0
+  languageName: unknown
+  linkType: soft
+
+"@tree-tails/storybook@workspace:storybook":
+  version: 0.0.0-use.local
+  resolution: "@tree-tails/storybook@workspace:storybook"
+  dependencies:
+    "@chromatic-com/storybook": "npm:3.2.3"
+    "@storybook/addon-essentials": "npm:8.4.7"
+    "@storybook/addon-interactions": "npm:8.4.7"
+    "@storybook/addon-onboarding": "npm:8.4.7"
+    "@storybook/blocks": "npm:8.4.7"
+    "@storybook/react": "npm:8.4.7"
+    "@storybook/react-vite": "npm:8.4.7"
+    "@storybook/test": "npm:8.4.7"
+    "@tree-tails/core": "workspace:*"
+    "@tree-tails/mui": "workspace:*"
+    "@types/prop-types": "npm:^15"
+    prop-types: "npm:15.8.1"
+    react: "npm:18.0.0"
+    react-dom: "npm:18.0.0"
+    storybook: "npm:8.4.7"
+    typescript: "npm:^5.7.2"
+    vite: "npm:^6.0.3"
   languageName: unknown
   linkType: soft
 
@@ -2583,7 +2609,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/prop-types@npm:^15.7.14":
+"@types/prop-types@npm:^15, @types/prop-types@npm:^15.7.14":
   version: 15.7.14
   resolution: "@types/prop-types@npm:15.7.14"
   checksum: 10c0/1ec775160bfab90b67a782d735952158c7e702ca4502968aa82565bd8e452c2de8601c8dfe349733073c31179116cf7340710160d3836aa8a1ef76d1532893b1
@@ -7323,7 +7349,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prop-types@npm:^15.6.2, prop-types@npm:^15.8.1":
+"prop-types@npm:15.8.1, prop-types@npm:^15.6.2, prop-types@npm:^15.8.1":
   version: 15.8.1
   resolution: "prop-types@npm:15.8.1"
   dependencies:
@@ -7407,26 +7433,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dom@npm:^16.8.0 || ^17.0.0 || ^18.0.0":
-  version: 18.3.1
-  resolution: "react-dom@npm:18.3.1"
+"react-dom@npm:18.0.0":
+  version: 18.0.0
+  resolution: "react-dom@npm:18.0.0"
   dependencies:
     loose-envify: "npm:^1.1.0"
-    scheduler: "npm:^0.23.2"
+    scheduler: "npm:^0.21.0"
   peerDependencies:
-    react: ^18.3.1
-  checksum: 10c0/a752496c1941f958f2e8ac56239172296fcddce1365ce45222d04a1947e0cc5547df3e8447f855a81d6d39f008d7c32eab43db3712077f09e3f67c4874973e85
-  languageName: node
-  linkType: hard
-
-"react-dom@npm:^19.0.0":
-  version: 19.0.0
-  resolution: "react-dom@npm:19.0.0"
-  dependencies:
-    scheduler: "npm:^0.25.0"
-  peerDependencies:
-    react: ^19.0.0
-  checksum: 10c0/a36ce7ab507b237ae2759c984cdaad4af4096d8199fb65b3815c16825e5cfeb7293da790a3fc2184b52bfba7ba3ff31c058c01947aff6fd1a3701632aabaa6a9
+    react: ^18.0.0
+  checksum: 10c0/78aa393ab4ae35f7266ba5cd761ebd35cab8375f63051bda2bb97a27be2622dbd661b24b32b8e55f9365aa027e732251e7d0d754c755f8efb6bd38a72ba03df8
   languageName: node
   linkType: hard
 
@@ -7480,19 +7495,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react@npm:^16.8.0 || ^17.0.0 || ^18.0.0":
-  version: 18.3.1
-  resolution: "react@npm:18.3.1"
+"react@npm:18.0.0":
+  version: 18.0.0
+  resolution: "react@npm:18.0.0"
   dependencies:
     loose-envify: "npm:^1.1.0"
-  checksum: 10c0/283e8c5efcf37802c9d1ce767f302dd569dd97a70d9bb8c7be79a789b9902451e0d16334b05d73299b20f048cbc3c7d288bbbde10b701fa194e2089c237dbea3
-  languageName: node
-  linkType: hard
-
-"react@npm:^19.0.0":
-  version: 19.0.0
-  resolution: "react@npm:19.0.0"
-  checksum: 10c0/9cad8f103e8e3a16d15cb18a0d8115d8bd9f9e1ce3420310aea381eb42aa0a4f812cf047bb5441349257a05fba8a291515691e3cb51267279b2d2c3253f38471
+  checksum: 10c0/cf55bc7b4315f54321d04cb0b69241c4973a5182d679551b3e6c3f57b312a4fdeac05038ca9502d48ea4d040d7550b0b7f07b3872a19589a5995ee899cc19d2b
   languageName: node
   linkType: hard
 
@@ -7875,19 +7883,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"scheduler@npm:^0.23.2":
-  version: 0.23.2
-  resolution: "scheduler@npm:0.23.2"
+"scheduler@npm:^0.21.0":
+  version: 0.21.0
+  resolution: "scheduler@npm:0.21.0"
   dependencies:
     loose-envify: "npm:^1.1.0"
-  checksum: 10c0/26383305e249651d4c58e6705d5f8425f153211aef95f15161c151f7b8de885f24751b377e4a0b3dd42cce09aad3f87a61dab7636859c0d89b7daf1a1e2a5c78
-  languageName: node
-  linkType: hard
-
-"scheduler@npm:^0.25.0":
-  version: 0.25.0
-  resolution: "scheduler@npm:0.25.0"
-  checksum: 10c0/a4bb1da406b613ce72c1299db43759526058fdcc413999c3c3e0db8956df7633acf395cb20eb2303b6a65d658d66b6585d344460abaee8080b4aa931f10eaafe
+  checksum: 10c0/083a9a0c83f4923f7f5bb28d8bcf13cff42c90f4303bc187166520fcfc576c97e946d426c707d5a9c0aa0a655819605dd0c741467c626824bbf191251c126f1b
   languageName: node
   linkType: hard
 

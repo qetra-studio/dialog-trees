@@ -9,10 +9,10 @@ export default defineConfig({
     }), tsConfigPaths()],
     build: {
         lib: {
-            entry: ['src/index.ts',
-                'src/dialog/index.ts',
-                'src/contexts/index.ts',
-                'src/base/index.ts'],
+            entry: {
+                index: "src/index.ts",
+                "config/index": "src/config/index.tsx",
+            },
             name: 'QetraDreesMui',
             formats: ['es'],
         },

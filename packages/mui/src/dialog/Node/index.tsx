@@ -1,7 +1,7 @@
-import DreesDialog from '@base/DreesDialog';
+import TailsDialog from '../../base/TailsDialog';
 import {useTreeDialogContext} from '@contexts/index';
 import Breadcrumb from "@dialog/Breadcrumb";
-import {DialogNodeBreadcrumb, DreesDialogNode, TailsDialogProps, NodeKey} from "@dialog/types";
+import {DialogNodeBreadcrumb, TailsDialogNode, TailsDialogProps, NodeKey} from "@dialog/types";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Button from '@mui/material/Button';
@@ -11,14 +11,14 @@ import Typography from '@mui/material/Typography';
 
 const backIcon = <ArrowBackIosNewIcon/>;
 
-export default function DialogNode<T extends Record<string, DreesDialogNode>>({
+export default function DialogNode<T extends Record<string, TailsDialogNode>>({
                                                                           node,
                                                                           prevNodeLabel,
                                                                           breadcrumbs,
                                                                           nodeId,
                                                                           ...props
                                                                       }: {
-    node: DreesDialogNode;
+    node: TailsDialogNode;
     prevNodeLabel?: string;
     nodeId: NodeKey<T>;
     breadcrumbs: DialogNodeBreadcrumb<T>[];
@@ -29,7 +29,7 @@ export default function DialogNode<T extends Record<string, DreesDialogNode>>({
     const slotProps = props.slotProps;
 
     return (
-        <DreesDialog
+        <TailsDialog
             key="dialog-node"
             {...props}
             title={title}
@@ -68,6 +68,6 @@ export default function DialogNode<T extends Record<string, DreesDialogNode>>({
             }}
         >
             {content}
-        </DreesDialog>
+        </TailsDialog>
     );
 }

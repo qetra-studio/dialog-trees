@@ -1,26 +1,44 @@
 {
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "target": "ES2020",
-    "module": "ES2020",
-    "outDir": "dist",
-    "rootDir": "src",
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "baseUrl": "./",
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "declaration": true,
-    "declarationDir": "./dist/types",
-    "moduleResolution": "Bundler",
-    "jsx": "react-jsx",
-    "resolveJsonModule": true,
+    "composite": true,
     "paths": {
-      "@base/*": ["./src/base/*"],
-      "@contexts/*": ["./src/contexts/*"],
-      "@dialog/*": ["./src/dialog/*"]
+      "@base/*": [
+        "./src/base/*"
+      ],
+      "@config/*": [
+        "./src/config/*"
+      ],
+      "@contexts/*": [
+        "./src/contexts/*"
+      ],
+      "@dialog/*": [
+        "./src/dialog/*"
+      ],
+      "@tree-tails/core/*": [
+        "../core/src/*"
+      ],
+      "@tree-tails/core": [
+        "../core/src"
+      ]
     }
   },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules"],
-  "references": [{
-    "path": "../core"
-  }]
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "references": [
+    {
+      "path": "../core"
+    }
+  ]
 }

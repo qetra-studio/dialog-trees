@@ -7,7 +7,7 @@ import type {ReactNode} from "react";
 import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore';
 import UnfoldLessIcon from '@mui/icons-material/UnfoldLess';
 
-export interface DreesDialogTitleProps {
+export interface TailsDialogTitleProps {
     title: ReactNode;
     onClose: () => void;
     childRight?: ReactNode;
@@ -18,7 +18,7 @@ export interface DreesDialogTitleProps {
     sx?: SxProps;
 }
 
-export default function DreesDialogTitle({
+export default function TailsDialogTitle({
                                              title,
                                              onClose,
                                              childRight,
@@ -27,7 +27,7 @@ export default function DreesDialogTitle({
                                              fullScreen,
                                              hideFullScreenSwitch,
                                              sx,
-                                         }: DreesDialogTitleProps) {
+                                         }: TailsDialogTitleProps) {
     const onFullScreenIconClick = () => onFullScreenSwitch(!fullScreen);
     const fullScreenSwitch = <IconButton onClick={onFullScreenIconClick}>{fullScreen ? <UnfoldLessIcon sx={{
         rotate: '45deg'

@@ -6,16 +6,16 @@ import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import type { DialogContentProps } from '@mui/material/DialogContent';
 import DialogContent from '@mui/material/DialogContent';
-import DreesMuiDialogTitle, {DreesDialogTitleProps} from "@base/DreesDialogTitle";
+import DreesMuiDialogTitle, {TailsDialogTitleProps} from "../TailsDialogTitle";
 
 
 type Slots = {
     dialog: Omit<DialogProps, 'open'> & Record<string, any>;
-    title: Pick<DreesDialogTitleProps, 'childRight' | 'childLeft'> & Record<string, any>;
+    title: Pick<TailsDialogTitleProps, 'childRight' | 'childLeft'> & Record<string, any>;
     content: DialogContentProps & Record<string, any>;
 };
 
-export interface DreesDialogProps {
+export interface TailsDialogProps {
     title: ReactNode;
     open: boolean;
     onClose: () => void;
@@ -26,7 +26,7 @@ export interface DreesDialogProps {
     slotProps?: Partial<Slots>;
 }
 
-export default function DreesDialog({
+export default function TailsDialog({
                                         title,
                                         defaultFullScreen,
                                         open,
@@ -37,7 +37,7 @@ export default function DreesDialog({
                                         maxWidth,
                                         children,
                                         ...props
-                                    }: PropsWithChildren<DreesDialogProps>) {
+                                    }: PropsWithChildren<TailsDialogProps>) {
     const [fullScreen, setFullScreen] = useState<boolean>(() => defaultFullScreen ?? false);
     return (
         <Dialog
