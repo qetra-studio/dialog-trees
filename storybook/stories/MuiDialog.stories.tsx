@@ -94,7 +94,7 @@ export const TitleNodeDialog: Story<typeof title> = {
         tail: title,
         rootTailProps: {
             title: "Sample title tail",
-            content: "Sample title tail content, can it be a lorem ipsum boilerplate? I honestly don't know but it does its thing, isn't? I guess so :D"
+            content: "Sample title tail content, can it be a lorem ipsum boilerplate? I honestly don't know but it does its thing, isn't it? I guess so :D"
         },
         unmountable: true
     }
