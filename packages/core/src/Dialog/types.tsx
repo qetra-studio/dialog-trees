@@ -1,23 +1,24 @@
-import {TailHistoryItem} from "@dialog/Dialog/types";
-import {DialogSlots} from "@types";
+import {ReactNode} from "react";
 
-export type GoBackFn = (args?: {
-    props: Record<string, unknown>,
-}) => void // todo: make props strict
+export interface DialogSlots  {
+    title: ReactNode;
+    content: ReactNode;
+    actions?: ReactNode;
+}
+
+export type Tail<P = {}, T = {}> = {
+    projector: (args: ProjectorArgs<P, T>) => DialogSlots
+} & WithTails<T>
+
 
 export interface TailScopeContext<Tail> {
-    navigate: <K extends TailKey<Tail>, >(key: K, item: Omit<TailHistoryItem<Tail, K>, 'key'>) => void
-    goBack: GoBackFn
+    navigate: NavigationFn<Tail>
 }
 
 interface ProjectorArgs<Props, Tails> {
     props: Props,
     ctx: TailScopeContext<Tail<Props, Tails>>
 }
-
-export type Tail<P = {}, T = {}> = {
-    projector: (args: ProjectorArgs<P, T>) => DialogSlots
-} & WithTails<T>
 
 type WithTails<T> = T extends never | void | undefined | null ? {} : { tails: TailsTree<T> }
 
@@ -50,12 +51,10 @@ type TraversedKey<T> = T extends DenormalizedTree ?
         : never
     : never;
 
-
 export type TailKey<T> = '' // root
     | TraversedKey<T>
 
 export type TailType<T> = TailValue<T, ''>;
-
 
 export type TailValue<T, K extends TailKey<T>> =
     T extends DenormalizedTree ?
@@ -92,3 +91,30 @@ export type TailOptions<T, K extends TailKey<T>> = TailValue<T, K> extends never
     : Parameters<TailValue<T, K>['projector']>[0] extends ProjectorArgs<infer Props, infer Tree>
         ? ProjectorArgs<Props, Tree>
         : never
+
+
+export interface TailHistoryItem<T, K extends TailKey<T>> {
+    key: K,
+    props: TailOptions<T, K>['props']
+    label: ReactNode
+    goBackLabel?: ReactNode
+    breadcrumbLabel?: ReactNode
+}
+
+export type TailNavigationHistory<T> = TailHistoryItem<T, TailKey<T>>[]
+
+
+export type FollowOptions<Tail, K extends TailKey<Tail>> = {
+    strategy?: 'follow',
+} & Omit<TailHistoryItem<Tail, K>, 'key'>
+
+export type ReturnOptions<Tail, K extends TailKey<Tail>> = {
+    strategy: 'return'
+} & {
+    props?: Partial<TailHistoryItem<Tail, K>['props']>
+}
+
+export type NavigationOptions<Tail, K extends TailKey<Tail>> = FollowOptions<Tail, K> | ReturnOptions<Tail, K>
+
+export type NavigationFn<Tail> = <K extends TailKey<Tail>>(key: K, options: NavigationOptions<Tail, K>) => void
+

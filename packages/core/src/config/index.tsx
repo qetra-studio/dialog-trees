@@ -1,8 +1,8 @@
-import {DialogTitleProps} from "@dialog/Title";
+import {BreadcrumbProps} from "@Dialog/tail/breadcrumbs";
+import {DialogTitleProps} from "@Dialog/tail/Title";
 import {createContext, FC, MouseEvent, PropsWithChildren, ReactNode, useContext, useMemo} from "react";
-import {BreadcrumbProps} from "../../breadcrumbs/Breadcrumb";
 
-export interface TailsContext {
+export interface TailsConfig {
     slots: {
         dialog: {
             Component: FC<PropsWithChildren<{open: boolean, onClose: () => void, fullScreen: boolean }>>,
@@ -37,11 +37,11 @@ export interface TailsContext {
     }
 }
 
-const Context = createContext<TailsContext>({} as TailsContext);
+const Context = createContext<TailsConfig>({} as TailsConfig);
 
-export const useTailsContext = () => useContext(Context);
+export const useTailsConfigContext = () => useContext(Context);
 
-export default function TailsContextProvider({children, ...ctx}: PropsWithChildren<TailsContext>) {
+export default function TailsConfigProvider({children, ...ctx}: PropsWithChildren<TailsConfig>) {
     const value = useMemo(() => ({...ctx}), [ctx])
     return <Context.Provider value={value}>{children}</Context.Provider>
 }

@@ -1,4 +1,4 @@
-import {useTailsContext} from "@contexts";
+import {useTailsConfigContext} from "@config";
 import {MouseEvent} from "react";
 
 export interface BreadcrumbProps {
@@ -18,7 +18,7 @@ export default function Breadcrumb({
                 Component: Breadcrumb
             }
         }
-    }} = useTailsContext()
+    }} = useTailsConfigContext()
 
     return <Breadcrumb onClick={onClick}/>
 }

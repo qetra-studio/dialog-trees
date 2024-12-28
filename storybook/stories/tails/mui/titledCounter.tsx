@@ -1,9 +1,9 @@
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import {Tail} from "@tree-tails/core";
 import React from "react";
 import counter from "./counter";
 import {TitleOptions} from "./title";
+import {Tail} from "@tree-tails/core/Dialog/types";
 
 const tails = {
     counter

@@ -3,8 +3,9 @@ import Button from "@mui/material/Button";
 import {createTheme, ThemeProvider} from "@mui/material/styles";
 import {Meta, StoryObj} from "@storybook/react";
 import {fn} from "@storybook/test";
-import {TailsDialog} from "@tree-tails/core";
-import {TailsContextProvider} from "@tree-tails/core/contexts";
+import TailsConfigProvider from "@tree-tails/core/config";
+
+
 import createTailsMuiConfig from "@tree-tails/mui/config";
 
 import React, {StrictMode, useState} from "react";
@@ -13,6 +14,7 @@ import passState from "./tails/mui/passState";
 import threeLayers from "./tails/mui/threeLayers";
 import title from "./tails/mui/title";
 import titledCounter from "./tails/mui/titledCounter";
+import TailsDialog from "@tree-tails/core/Dialog";
 
 const muiConfig = createTailsMuiConfig()
 
@@ -42,9 +44,9 @@ const meta = {
         (Story, {args}) => {
             return <StrictMode>
                 <ThemeProvider theme={theme}>
-                    <TailsContextProvider {...muiConfig}>
+                    <TailsConfigProvider {...muiConfig}>
                         <Story args={args}/>
-                    </TailsContextProvider>
+                    </TailsConfigProvider>
                 </ThemeProvider>
             </StrictMode>
         },

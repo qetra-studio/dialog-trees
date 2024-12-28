@@ -16,20 +16,18 @@
       "import": "./dist/index.js",
       "require": "./dist/index.cjs"
     },
-    "./contexts": {
-      "types": "./dist/contexts/index.d.ts",
-      "import": "./dist/contexts/index.js",
-      "require": "./dist/contexts/index.cjs"
+    "./config": {
+      "types": "./dist/config/index.d.ts",
+      "import": "./dist/config/index.js",
+      "require": "./dist/config/index.cjs"
     },
-    "./dialog": {
-      "types": "./dist/dialog/index.d.ts",
-      "import": "./dist/dialog/index.js",
-      "require": "./dist/dialog/index.cjs"
+    "./Dialog": {
+      "types": "./dist/Dialog/index.d.ts",
+      "import": "./dist/Dialog/index.js",
+      "require": "./dist/Dialog/index.cjs"
     },
-    "./breadcrumbs": {
-      "types": "./dist/breadcrumbs/index.d.ts",
-      "import": "./dist/breadcrumbs/index.js",
-      "require": "./dist/breadcrumbs/index.cjs"
+    "./Dialog/types": {
+      "types": "./dist/Dialog/types.d.ts"
     }
   },
   "files": [

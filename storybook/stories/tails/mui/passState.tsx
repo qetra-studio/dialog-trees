@@ -1,7 +1,7 @@
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import {Tail} from "@tree-tails/core";
-import React, {useRef, useState} from "react";
+import {Tail} from "@tree-tails/core/Dialog/types";
+import React, {useRef} from "react";
 import counter from "./counter";
 import {TitleOptions} from "./title";
 
@@ -32,27 +32,28 @@ const tails = {
 
 const passState: Tail<TitleOptions & {initNumber?: number}, typeof tails> = {
     projector: ({
-                    props: {
-                        title,
-                        content,
-                        actions,
-                        initNumber = undefined
-                    },
+                    props,
                     ctx: {
-                        navigate,
-                        goBack
+                        navigate
                     }
                 }) => {
-
+        const {
+            title,
+            content,
+            actions,
+            initNumber = undefined
+        } = props;
         const onSetStateClick = () => navigate('stateSetter', {
             props: {
                 onClick: value => {
-                    goBack({
+                    navigate('', {
                         props: {
+                            ...props,
                             initNumber: value
-                        }
+                        },
+                        strategy: 'return'
                     });
-                }
+                },
             },
             label: 'counter'
         });

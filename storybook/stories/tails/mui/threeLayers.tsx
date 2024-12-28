@@ -1,7 +1,7 @@
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import Typography from "@mui/material/Typography";
-import {Tail, TailKey, TailValue} from "@tree-tails/core";
+import {Tail, TailKey, TailValue} from "@tree-tails/core/Dialog/types";
 import React from "react";
 import counter from "./counter";
 import {TitleOptions} from "./title";
