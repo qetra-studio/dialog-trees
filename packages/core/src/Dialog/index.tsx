@@ -118,7 +118,7 @@ export default function TailsDialog<T>({
                     if (index === -1) {
                         throw new Error(`Last index of ${key} has not been found in history`);
                     }
-                    const copy = history.slice(0, index);
+                    const copy = history.slice(0, index + 1);
                     const item = copy[index];
                     if (options.props) {
                         item.props = {

@@ -6,8 +6,6 @@ export interface DialogSlots  {
     actions?: ReactNode;
 }
 
-
-
 export type Tail<P = {}, T = {}> = {
     projector: (args: ProjectorArgs<P, T>) => DialogSlots
 } & WithTails<T>
