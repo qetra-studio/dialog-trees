@@ -10,10 +10,8 @@ interface Options {
 
 const counter = {
     projector: ({
-                    props: {
                         initNumber,
                         title
-                    },
                 }) => {
         const [value, setValue] = useState<number>(initNumber)
         useEffect(() => {

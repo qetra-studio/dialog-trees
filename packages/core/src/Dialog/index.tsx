@@ -35,7 +35,7 @@ interface Props {
 
 type WithTail<P> = {
     tail: TailType<P>;
-    rootTailProps: TailOptions<P, ''>['props']
+    rootTailProps: TailOptions<P>
     rootLabel: ReactNode;
     rootGoBackLabel?: ReactNode;
     rootBreadcrumbLabel?: ReactNode
@@ -120,9 +120,9 @@ export default function TailsDialog<T>({
                     }
                     const copy = history.slice(0, index + 1);
                     const item = copy[index];
-                    if (options.props) {
+                    if (item.props) {
                         item.props = {
-                            ...(item.props ?? {}),
+                            ...item.props,
                             ...options.props
                         } // makes it possible to pass new props back
                     }

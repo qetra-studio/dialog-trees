@@ -11,22 +11,17 @@ export interface TitleOptions {
 
 const title = {
     projector: ({
-                    props: {
-                        title,
-                        content,
-                        actions
-                    }
-                }) => {
-
-        return ({
+                    title,
+                    content,
+                    actions
+                }) =>
+        ({
             title: <Typography>{title}</Typography>,
             content: <Typography>{content}</Typography>,
             actions: <>{actions}<Button variant='contained'>Sample action</Button></>
-        });
-    },
+        }),
     tails: {}
 } as const satisfies Tail<TitleOptions>
-
 
 
 export default title

@@ -1,13 +1,13 @@
 import {ReactNode} from "react";
 
-export interface DialogSlots  {
+export interface DialogSlots {
     title: ReactNode;
     content: ReactNode;
     actions?: ReactNode;
 }
 
 export type Tail<P = {}, T = {}> = {
-    projector: (args: ProjectorArgs<P, T>) => DialogSlots
+    projector: (...args: ProjectorArgs<P, T>) => DialogSlots
 } & WithTails<T>
 
 
@@ -15,10 +15,7 @@ export interface TailScopeContext<Tail> {
     navigate: NavigationFn<Tail>
 }
 
-interface ProjectorArgs<Props, Tails> {
-    props: Props,
-    ctx: TailScopeContext<Tail<Props, Tails>>
-}
+type ProjectorArgs<Props, Tails> = [Props, TailScopeContext<Tail<Props, Tails>>]
 
 type WithTails<T> = T extends never | void | undefined | null ? {} : { tails: TailsTree<T> }
 
@@ -29,7 +26,7 @@ export type TailsTree<T> = T extends DenormalizedTree ?
         [K in keyof T]: T[K] extends {
             tails?: infer Tails
         } ? T[K] extends {
-                projector: (props: ProjectorArgs<infer P, Tails>) => DialogSlots,
+                projector: (...args: ProjectorArgs<infer P, Tails>) => DialogSlots,
             }
             ? Tail<P, Tails>
             : never
@@ -62,14 +59,14 @@ export type TailValue<T, K extends TailKey<T>> =
                 tails?: infer Tails
             } ?
             T extends {
-                    projector: (props: ProjectorArgs<infer P, Tails>) => DialogSlots,
+                    projector: (...args: ProjectorArgs<infer P, Tails>) => DialogSlots,
                 } ?
                 K extends `${infer Head}${KeySeparator}${infer Rest}` ?
                     Head extends keyof Tails ?
                         Tails[Head] extends {
                                 tails?: infer TT
                             } ? Tails[Head] extends {
-                                    projector: (props: ProjectorArgs<infer P, TT>) => DialogSlots,
+                                    projector: (...args: ProjectorArgs<infer P, TT>) => DialogSlots,
                                 } ?
                                 Rest extends TailKey<Tails[Head]> ?
                                     TailValue<Tails[Head], Rest>
@@ -86,16 +83,16 @@ export type TailValue<T, K extends TailKey<T>> =
             : never
         : never;
 
-export type TailOptions<T, K extends TailKey<T>> = TailValue<T, K> extends never
+export type TailOptions<T, K extends TailKey<T> =''> = TailValue<T, K> extends never
     ? never
-    : Parameters<TailValue<T, K>['projector']>[0] extends ProjectorArgs<infer Props, infer Tree>
-        ? ProjectorArgs<Props, Tree>
+    : Parameters<TailValue<T, K>['projector']> extends ProjectorArgs<infer Props, infer Tree>
+        ? ProjectorArgs<Props, Tree>[0]
         : never
 
 
 export interface TailHistoryItem<T, K extends TailKey<T>> {
     key: K,
-    props: TailOptions<T, K>['props']
+    props: TailOptions<T, K>
     label: ReactNode
     goBackLabel?: ReactNode
     breadcrumbLabel?: ReactNode
@@ -111,7 +108,7 @@ export type FollowOptions<Tail, K extends TailKey<Tail>> = {
 export type ReturnOptions<Tail, K extends TailKey<Tail>> = {
     strategy: 'return'
 } & {
-    props?: Partial<TailHistoryItem<Tail, K>['props']>
+    props?: Partial<TailOptions<Tail, K>>
 }
 
 export type NavigationOptions<Tail, K extends TailKey<Tail>> = FollowOptions<Tail, K> | ReturnOptions<Tail, K>

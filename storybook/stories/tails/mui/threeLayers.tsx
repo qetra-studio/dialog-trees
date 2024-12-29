@@ -12,22 +12,17 @@ const tails = {
     titledCounter
 }
 
-
 const threeLayers: Tail<TitleOptions, typeof tails> = {
     projector: ({
-                    props: {
-                        title,
-                        content
-                    },
-                    ctx: {
-                        navigate
-                    }
-                }) => {
+                    title,
+                    content
+                }, {navigate}) => {
 
         const onNavigateClick = () => navigate('titledCounter', {
             props: {
                 title: 'Second title page!',
-                content: <><Typography>Cool content, you see? That button will throw you to the root again (but with other content)</Typography>
+                content: <><Typography>Cool content, you see? That button will throw you to the root again (but with
+                    other content)</Typography>
                     <Button variant='contained' onClick={() => navigate('', {
                         props: {
                             title: "Root again? really?",

@@ -11,15 +11,10 @@ const tails = {
 
 const titledCounter: Tail<TitleOptions, typeof tails> = {
     projector: ({
-                    props: {
-                        title,
-                        content,
-                        actions
-                    },
-                    ctx: {
-                        navigate
-                    }
-                }) => {
+                    title,
+                    content,
+                    actions
+                }, {navigate}) => {
         const onNavigateClick = () => navigate('counter', {
             props: {
                 initNumber: 3

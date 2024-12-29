@@ -8,17 +8,14 @@ import {TitleOptions} from "./title";
 const stateSetter: Tail<{
     onClick: (value: number) => void
 }> = {
-    projector: ({
-                    props: {
-                        onClick
-                    }
-                }) => {
+    projector: ({onClick}) => {
         const number = useRef(new Date().getMilliseconds() % 10)
         return ({
             title: 'Set state!',
             content: <Typography>Action will return {number.current} to previous tail</Typography>,
             actions: <>
-                <Button variant='contained' onClick={() => onClick(number.current)}>Set counter initial number to {number.current}</Button>
+                <Button variant='contained' onClick={() => onClick(number.current)}>Set counter initial number
+                    to {number.current}</Button>
             </>
         });
     },
@@ -30,13 +27,10 @@ const tails = {
     stateSetter
 } as const;
 
-const passState: Tail<TitleOptions & {initNumber?: number}, typeof tails> = {
-    projector: ({
-                    props,
-                    ctx: {
-                        navigate
-                    }
-                }) => {
+const passState: Tail<TitleOptions & { initNumber?: number }, typeof tails> = {
+    projector: (
+        props,
+        {navigate}) => {
         const {
             title,
             content,
