@@ -5,6 +5,7 @@ import DialogContent from "@Dialog/tail/Content";
 import TailContextProvider from "@Dialog/tail/Context";
 import DialogTitle from "@Dialog/tail/Title";
 import {
+    HistoryItemPredicate,
     NavigationFn,
     NavigationOptions, TailHistoryItem,
     TailKey,
@@ -33,15 +34,15 @@ interface Props {
 }
 
 
-type WithTail<P> = {
-    tail: TailType<P>;
-    rootTailProps: TailOptions<P>
+type WithTail<T> = {
+    tail: TailType<T>;
+    rootTailProps: TailOptions<T>
     rootLabel: ReactNode;
     rootGoBackLabel?: ReactNode;
     rootBreadcrumbLabel?: ReactNode
 }
 
-export type TailsDialogProps<P> = Props & WithTail<P>
+export type TailsDialogProps<T> = Props & WithTail<T>
 
 const keySeparator = '.'
 
@@ -114,7 +115,9 @@ export default function TailsDialog<T>({
         switch (strategy) {
             case "return":
                 setHistory(history => {
-                    const index = lastIndexBy(history, x => x.key === key);
+                    const index = lastIndexBy(history, options.filters
+                        ? ((x, i) => x.key === key && (options.filters as HistoryItemPredicate<T, TailKey<T>>)(x, i))
+                        : (x => x.key === key));
                     if (index === -1) {
                         throw new Error(`Last index of ${key} has not been found in history`);
                     }

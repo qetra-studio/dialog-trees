@@ -27,7 +27,7 @@ const tails = {
     stateSetter
 } as const;
 
-const passState: Tail<TitleOptions & { initNumber?: number }, typeof tails> = {
+const passState = {
     projector: (
         props,
         {navigate}) => {
@@ -69,6 +69,6 @@ const passState: Tail<TitleOptions & { initNumber?: number }, typeof tails> = {
         });
     },
     tails
-}
+} satisfies Tail<TitleOptions & { initNumber?: number }, typeof tails>
 
 export default passState;

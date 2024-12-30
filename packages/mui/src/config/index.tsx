@@ -2,6 +2,7 @@ import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import Close from "@mui/icons-material/Close";
 import UnfoldLessIcon from "@mui/icons-material/UnfoldLess";
 import UnfoldMoreIcon from "@mui/icons-material/UnfoldMore";
+import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
@@ -105,9 +106,22 @@ export default function createTailsMuiConfig(): TailsConfig {
                 }
             },
             breadcrumbs: {
-                Component: () => <></>,
+                Component: ({children}) => <Breadcrumbs>
+                    {children}
+                </Breadcrumbs>,
                 breadcrumb: {
-                    Component: () => <></>
+                    Component: ({children, onClick}) => <Typography
+                        component="span"
+                        sx={{
+                            '&:hover': {
+                                textDecoration: 'underline',
+                                cursor: 'pointer',
+                            },
+                        }}
+                        onClick={onClick}
+                    >
+                        {children}
+                    </Typography>
                 }
             }
         }

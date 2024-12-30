@@ -29,9 +29,9 @@ export interface TailsConfig {
             }
         },
         breadcrumbs: {
-            Component: FC<PropsWithChildren<BreadcrumbProps>>,
+            Component: FC<PropsWithChildren>,
             breadcrumb: {
-                Component: FC<BreadcrumbProps>
+                Component: FC<PropsWithChildren<BreadcrumbProps>>
             }
         }
     }

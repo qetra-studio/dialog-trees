@@ -1,5 +1,5 @@
 import {useTailsConfigContext} from "@config";
-import {MouseEvent} from "react";
+import {MouseEvent, PropsWithChildren} from "react";
 
 export interface BreadcrumbProps {
     onClick?: (event: MouseEvent) => void;
@@ -10,15 +10,20 @@ interface Props {
 }
 
 export default function Breadcrumb({
-    onClick
-                                   }: Props) {
-    const {slots: {
-        breadcrumbs: {
-            breadcrumb: {
-                Component: Breadcrumb
+                                       onClick,
+                                       children
+                                   }: PropsWithChildren<Props>) {
+    const {
+        slots: {
+            breadcrumbs: {
+                breadcrumb: {
+                    Component: Breadcrumb
+                }
             }
         }
-    }} = useTailsConfigContext()
+    } = useTailsConfigContext()
 
-    return <Breadcrumb onClick={onClick}/>
+    return <Breadcrumb onClick={onClick}>
+        {children}
+    </Breadcrumb>
 }

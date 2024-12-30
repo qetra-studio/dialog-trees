@@ -1,6 +1,6 @@
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import {Tail} from "@tree-tails/core/Dialog/types";
+import {Tail, TailOptions, TailScopeContext, TailValue} from "@tree-tails/core/Dialog/types";
 import React, {useEffect, useState} from "react";
 
 interface Options {
@@ -30,6 +30,11 @@ const counter = {
         });
     },
     tails: {}
-} as const satisfies Tail<Options>
+} satisfies Tail<Options>
+
+type ProjectorArgs<Props, Tails> = [Props, TailScopeContext<Tail<Props, Tails>>]
+
+type CounterTailOptions = TailOptions<typeof counter>
+type CounterTailValue = TailValue<typeof counter, ''>
 
 export default counter

@@ -54,22 +54,21 @@ export type TailKey<T> = '' // root
 export type TailType<T> = TailValue<T, ''>;
 
 export type TailValue<T, K extends TailKey<T>> =
-    T extends DenormalizedTree ?
-        T extends {
-                tails?: infer Tails
-            } ?
-            T extends {
+    T extends DenormalizedTree
+        ? T extends { tails?: infer Tails }
+            ? T extends {
                     projector: (...args: ProjectorArgs<infer P, Tails>) => DialogSlots,
-                } ?
-                K extends `${infer Head}${KeySeparator}${infer Rest}` ?
-                    Head extends keyof Tails ?
-                        Tails[Head] extends {
+                }
+                ? K extends `${infer Head}${KeySeparator}${infer Rest}`
+                    ? Head extends keyof Tails
+                        ? Tails[Head] extends {
                                 tails?: infer TT
-                            } ? Tails[Head] extends {
+                            }
+                            ? Tails[Head] extends {
                                     projector: (...args: ProjectorArgs<infer P, TT>) => DialogSlots,
-                                } ?
-                                Rest extends TailKey<Tails[Head]> ?
-                                    TailValue<Tails[Head], Rest>
+                                }
+                                ? Rest extends TailKey<Tails[Head]>
+                                    ? TailValue<Tails[Head], Rest>
                                     : never
                                 : never
                             : never
@@ -83,11 +82,21 @@ export type TailValue<T, K extends TailKey<T>> =
             : never
         : never;
 
-export type TailOptions<T, K extends TailKey<T> =''> = TailValue<T, K> extends never
+type Subset<T, U> = T extends [infer FirstT, ...infer RestT]
+    ? U extends [infer FirstU, ...infer RestU]
+        ? [FirstT] extends [FirstU]
+            ? [FirstT, ...Subset<RestT, RestU>]
+            : []
+        : []
+    : [];
+
+export type TailOptions<T, K extends TailKey<T> = ''> = TailValue<T, K> extends never
     ? never
-    : Parameters<TailValue<T, K>['projector']> extends ProjectorArgs<infer Props, infer Tree>
-        ? ProjectorArgs<Props, Tree>[0]
-        : never
+    : Parameters<TailValue<T, K>['projector']> extends infer P
+        ? P extends readonly any[]
+            ? Subset<P, ProjectorArgs<any, any>>[0]
+            : never
+        : {};
 
 
 export interface TailHistoryItem<T, K extends TailKey<T>> {
@@ -105,10 +114,13 @@ export type FollowOptions<Tail, K extends TailKey<Tail>> = {
     strategy?: 'follow',
 } & Omit<TailHistoryItem<Tail, K>, 'key'>
 
+export type HistoryItemPredicate<Tail, K extends TailKey<Tail>> = (item: TailHistoryItem<Tail, K>, index: number) => boolean
+
 export type ReturnOptions<Tail, K extends TailKey<Tail>> = {
     strategy: 'return'
 } & {
     props?: Partial<TailOptions<Tail, K>>
+    filters?: HistoryItemPredicate<Tail, K>
 }
 
 export type NavigationOptions<Tail, K extends TailKey<Tail>> = FollowOptions<Tail, K> | ReturnOptions<Tail, K>

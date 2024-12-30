@@ -1,5 +1,6 @@
 
 import {useTailsConfigContext} from "@config";
+import {Breadcrumbs} from "@Dialog/tail/breadcrumbs";
 import {useTailContext} from "@Dialog/tail/Context";
 import {useDialogContext} from "@Dialog/tail/Dialog";
 import {NavigationFn} from "@Dialog/types";
@@ -44,5 +45,6 @@ export default function DialogTitle<T>({hideFullScreenSwitch, navigate}: {
                   fullScreenSwitch={hideFullScreenSwitch ? null : fullScreenSwitch}
                   goBackButton={goBackButton}>
         {title}
+        <Breadcrumbs/>
     </Title>
 }

@@ -89,7 +89,8 @@ export const TitleNodeDialog: Story<typeof title> = {
             title: "Sample title tail",
             content: "Sample title tail content, can it be a lorem ipsum boilerplate? I honestly don't know but it does its thing, isn't it? I guess so :D"
         },
-        unmountable: true
+        unmountable: true,
+        rootLabel: 'Root'
     }
 };
 
@@ -103,7 +104,8 @@ export const SingleNodeDialog: Story<typeof counter> = {
         rootTailProps: {
             initNumber: 6
         },
-        unmountable: true
+        unmountable: true,
+        rootLabel: 'Root'
     }
 };
 
@@ -117,7 +119,8 @@ export const TwoLayersDeepDialog: Story<typeof titledCounter> = {
         rootTailProps: {
             title: 'Title page of counter module!',
             content: "You can see stuff on the next page, aren't you?"
-        }
+        },
+        rootLabel: 'Root'
     }
 }
 

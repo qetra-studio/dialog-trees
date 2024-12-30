@@ -21,7 +21,7 @@ const title = {
             actions: <>{actions}<Button variant='contained'>Sample action</Button></>
         }),
     tails: {}
-} as const satisfies Tail<TitleOptions>
+} satisfies Tail<TitleOptions>
 
 
 export default title
